@@ -25,7 +25,7 @@ jobs:
               run: |
                     cd aws_infra
                     terraform plan
-                    if [ $? -eq 0 ]; then  # Space after '[' and before ']'
+                    if [ $? -eq 0 ]; then  
                         echo "Step two successful: Terraform plan succeeded"
                     else
                         echo "Terraform plan failed" >&2
