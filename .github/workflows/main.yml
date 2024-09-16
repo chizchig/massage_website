@@ -1,0 +1,30 @@
+name: Build and Deploy
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    deploy: 
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            - name: set up Terraform
+              uses: hashicorp/setup-terraform@v1
+
+            - name: Terraform Initialize
+              run: terraform init
+
+            - name: Terraform Plan
+              run: |
+                  terraform plan
+                  if [ $? -eq 0]; then
+                    echo "Step two successful: Terraform plan succeeded"
+                  else
+                   echo "Terraaform plan failed" >&2
+                   exit 1 # Failed the step if plan fails
+                  fi
