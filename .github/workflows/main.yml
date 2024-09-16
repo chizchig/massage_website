@@ -17,10 +17,13 @@ jobs:
               uses: hashicorp/setup-terraform@v1
 
             - name: Terraform Initialize
-              run: terraform init
+              run: | 
+                cd aws_infra
+                terraform init
 
             - name: Terraform Plan
               run: |
+                  cd aws_infra
                   terraform plan
                   if [ $? -eq 0]; then
                     echo "Step two successful: Terraform plan succeeded"
