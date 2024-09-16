@@ -23,11 +23,11 @@ jobs:
 
             - name: Terraform Plan
               run: |
-                  cd aws_infra
-                  terraform plan
-                  if [ $? -eq 0]; then
-                    echo "Step two successful: Terraform plan succeeded"
-                  else
-                   echo "Terraaform plan failed" >&2
-                   exit 1 # Failed the step if plan fails
-                  fi
+                    cd aws_infra
+                    terraform plan
+                    if [ $? -eq 0 ]; then  # Space after '[' and before ']'
+                        echo "Step two successful: Terraform plan succeeded"
+                    else
+                        echo "Terraform plan failed" >&2
+                        exit 1  # Fail the step if plan fails
+                    fi
